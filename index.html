@@ -8,52 +8,48 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="theme-color"
+        content="#050a18"
+    >
+
     <title>Bloom — A Little Garden</title>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- IMPORTANT -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
+    <!-- ==========================================
          INTRO SCREEN
-    ====================================================== -->
+    =========================================== -->
 
-    <section id="intro" class="intro">
+    <section id="introScreen" class="intro-screen">
 
-        <div class="intro-stars"></div>
+        <div class="stars intro-stars"></div>
 
-        <div class="intro-moon"></div>
+        <div class="intro-moon">
+            <div class="moon-shadow"></div>
+        </div>
 
         <div class="intro-content">
 
-            <div class="small-label">
-                A LITTLE PLACE TO BLOOM
-            </div>
+            <p class="eyebrow">
+                A QUIET PLACE
+            </p>
 
             <h1>
-                A Garden
-                <span>for You.</span>
+                Bloom
             </h1>
 
-            <p>
-                A quiet little garden where every click
-                brings another flower to life.
+            <p class="intro-subtitle">
+                A Little Garden
+            </p>
+
+            <p class="intro-description">
+                A small garden waiting for you.
+                <br>
+                Plant a flower and let it bloom.
             </p>
 
             <button
@@ -61,197 +57,188 @@
                 class="enter-button"
             >
                 <span>Enter the Garden</span>
-                <b>→</b>
+                <span class="button-arrow">→</span>
             </button>
 
-        </div>
-
-        <div class="intro-bottom">
-            take a little moment
         </div>
 
     </section>
 
 
-    <!-- =====================================================
-         GARDEN
-    ====================================================== -->
+    <!-- ==========================================
+         GARDEN SCREEN
+    =========================================== -->
 
-    <main
-        id="garden"
-        class="garden hidden"
+    <section
+        id="gardenScreen"
+        class="garden-screen hidden"
     >
 
-        <!-- Background -->
-        <div class="sky"></div>
+        <!-- Night sky -->
 
-        <div class="garden-stars"></div>
+        <div class="stars garden-stars"></div>
 
-        <div class="moon"></div>
+        <div class="small-cloud cloud-one"></div>
+        <div class="small-cloud cloud-two"></div>
 
+        <!-- Moon -->
 
-        <!-- =================================================
-             NAVIGATION
-        ================================================== -->
-
-        <nav class="navigation">
-
-            <div class="logo">
-                bloom<span>.</span>
-            </div>
-
-            <button id="homeButton">
-                ← Home
-            </button>
-
-        </nav>
+        <div class="garden-moon">
+            <div class="garden-moon-shadow"></div>
+        </div>
 
 
-        <!-- =================================================
-             TITLE
-        ================================================== -->
+        <!-- ======================================
+             HEADER
+        ======================================= -->
 
-        <section class="garden-title">
+        <header class="garden-header">
 
-            <div class="small-label">
+            <p class="garden-label">
                 YOUR LITTLE GARDEN
-            </div>
+            </p>
 
             <h2>
-                Let something
-                <em>beautiful</em>
-                grow.
+                Let it bloom.
             </h2>
 
-            <p>
-                Click the ground to plant a tulip
+            <p class="garden-instruction">
+                Tap anywhere on the ground
             </p>
 
-        </section>
+        </header>
 
 
-        <!-- =================================================
-             BUTTERFLY
-        ================================================== -->
+        <!-- ======================================
+             GARDEN
+        ======================================= -->
 
-        <div
-            id="butterfly"
-            class="butterfly"
+        <main
+            id="garden"
+            class="garden"
         >
 
-            <div class="butterfly-body"></div>
+            <!-- Soft light near horizon -->
 
-            <div class="antenna antenna-left"></div>
+            <div class="ground-light"></div>
 
-            <div class="antenna antenna-right"></div>
 
-            <div class="butterfly-wing left-wing">
+            <!-- ==================================
+                 BACK GRASS
+            =================================== -->
 
+            <div class="back-grass"></div>
+
+
+            <!-- ==================================
+                 FLOWERS
+            =================================== -->
+
+            <div
+                id="flowerLayer"
+                class="flower-layer"
+            ></div>
+
+
+            <!-- ==================================
+                 PLANTING AREA
+
+                 IMPORTANT:
+                 This transparent layer only covers
+                 the actual grass area.
+
+                 Therefore you cannot plant in the sky.
+            =================================== -->
+
+            <div
+                id="plantZone"
+                class="plant-zone"
+                aria-label="Planting ground"
+            ></div>
+
+
+            <!-- ==================================
+                 FIREFLIES
+            =================================== -->
+
+            <div class="fireflies">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <span></span>
 
             </div>
 
-            <div class="butterfly-wing right-wing">
 
-                <span></span>
+            <!-- ==================================
+                 FRONT GRASS
+            =================================== -->
+
+            <div class="front-grass"></div>
+
+
+            <!-- ==================================
+                 BUTTERFLY
+            =================================== -->
+
+            <div class="butterfly">
+
+                <div class="butterfly-wing wing-left"></div>
+
+                <div class="butterfly-body"></div>
+
+                <div class="butterfly-wing wing-right"></div>
 
             </div>
 
-        </div>
 
+            <!-- ==================================
+                 BOTTOM UI
+            =================================== -->
 
-        <!-- =================================================
-             FLOWERS
-        ================================================== -->
+            <div class="garden-ui">
 
-        <div
-            id="flowerLayer"
-            class="flower-layer"
-        ></div>
+                <div
+                    id="flowerCounter"
+                    class="flower-counter"
+                >
+                    <span id="countNumber">0</span>
+                    <span id="countText">blooms</span>
+                </div>
 
+                <button
+                    id="clearBtn"
+                    class="clear-button"
+                >
+                    Clear
+                </button>
 
-        <!-- =================================================
-             GROUND
-        ================================================== -->
-
-        <div
-            id="ground"
-            class="ground"
-        >
-
-            <div class="grass"></div>
-
-            <div class="grass grass-two"></div>
-
-            <div class="ground-glow"></div>
-
-            <div class="soil"></div>
-
-        </div>
-
-
-        <!-- =================================================
-             INSTRUCTION
-        ================================================== -->
-
-        <div
-            id="clickHint"
-            class="click-hint"
-        >
-
-            <span></span>
-
-            click to bloom
-
-        </div>
-
-
-        <!-- =================================================
-             COUNTER
-        ================================================== -->
-
-        <div class="flower-counter">
-
-            <strong id="flowerCount">
-                0
-            </strong>
-
-            <span>
-                flowers blooming
-            </span>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         LITTLE MESSAGE
-    ====================================================== -->
-
-    <div
-        id="message"
-        class="message"
-    >
-
-        <div class="message-card">
-
-            <div class="message-star">
-                ✦
             </div>
 
-            <p>
-                Every little thing<br>
-                needs time to bloom.
-            </p>
 
-        </div>
+            <!-- Tap hint -->
 
-    </div>
+            <div
+                id="tapHint"
+                class="tap-hint"
+            >
+                <span class="tap-dot"></span>
+                Tap the ground to plant
+            </div>
+
+        </main>
+
+    </section>
 
 
-    <!-- IMPORTANT -->
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
