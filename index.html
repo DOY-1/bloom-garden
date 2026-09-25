@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bloom — A Little Garden</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- IMPORTANT -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         INTRO SCREEN
+    ====================================================== -->
+
+    <section id="intro" class="intro">
+
+        <div class="intro-stars"></div>
+
+        <div class="intro-moon"></div>
+
+        <div class="intro-content">
+
+            <div class="small-label">
+                A LITTLE PLACE TO BLOOM
+            </div>
+
+            <h1>
+                A Garden
+                <span>for You.</span>
+            </h1>
+
+            <p>
+                A quiet little garden where every click
+                brings another flower to life.
+            </p>
+
+            <button
+                id="enterGarden"
+                class="enter-button"
+            >
+                <span>Enter the Garden</span>
+                <b>→</b>
+            </button>
+
+        </div>
+
+        <div class="intro-bottom">
+            take a little moment
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GARDEN
+    ====================================================== -->
+
+    <main
+        id="garden"
+        class="garden hidden"
+    >
+
+        <!-- Background -->
+        <div class="sky"></div>
+
+        <div class="garden-stars"></div>
+
+        <div class="moon"></div>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="navigation">
+
+            <div class="logo">
+                bloom<span>.</span>
+            </div>
+
+            <button id="homeButton">
+                ← Home
+            </button>
+
+        </nav>
+
+
+        <!-- =================================================
+             TITLE
+        ================================================== -->
+
+        <section class="garden-title">
+
+            <div class="small-label">
+                YOUR LITTLE GARDEN
+            </div>
+
+            <h2>
+                Let something
+                <em>beautiful</em>
+                grow.
+            </h2>
+
+            <p>
+                Click the ground to plant a tulip
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             BUTTERFLY
+        ================================================== -->
+
+        <div
+            id="butterfly"
+            class="butterfly"
+        >
+
+            <div class="butterfly-body"></div>
+
+            <div class="antenna antenna-left"></div>
+
+            <div class="antenna antenna-right"></div>
+
+            <div class="butterfly-wing left-wing">
+
+                <span></span>
+
+            </div>
+
+            <div class="butterfly-wing right-wing">
+
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             FLOWERS
+        ================================================== -->
+
+        <div
+            id="flowerLayer"
+            class="flower-layer"
+        ></div>
+
+
+        <!-- =================================================
+             GROUND
+        ================================================== -->
+
+        <div
+            id="ground"
+            class="ground"
+        >
+
+            <div class="grass"></div>
+
+            <div class="grass grass-two"></div>
+
+            <div class="ground-glow"></div>
+
+            <div class="soil"></div>
+
+        </div>
+
+
+        <!-- =================================================
+             INSTRUCTION
+        ================================================== -->
+
+        <div
+            id="clickHint"
+            class="click-hint"
+        >
+
+            <span></span>
+
+            click to bloom
+
+        </div>
+
+
+        <!-- =================================================
+             COUNTER
+        ================================================== -->
+
+        <div class="flower-counter">
+
+            <strong id="flowerCount">
+                0
+            </strong>
+
+            <span>
+                flowers blooming
+            </span>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         LITTLE MESSAGE
+    ====================================================== -->
+
+    <div
+        id="message"
+        class="message"
+    >
+
+        <div class="message-card">
+
+            <div class="message-star">
+                ✦
+            </div>
+
+            <p>
+                Every little thing<br>
+                needs time to bloom.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- IMPORTANT -->
+    <script src="./script.js"></script>
+
+</body>
+</html>
