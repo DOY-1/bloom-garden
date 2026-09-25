@@ -1,14 +1,14 @@
-/* ==========================================
+/* =========================================
    BLOOM — A LITTLE GARDEN
-========================================== */
+========================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /* ======================================
-           ELEMENTS
-        ======================================= */
+        /* =====================================
+           GET HTML ELEMENTS
+        ====================================== */
 
         const introScreen =
             document.getElementById(
@@ -56,17 +56,46 @@ document.addEventListener(
             );
 
 
-        /* ======================================
+        /* =====================================
+           SAFETY CHECK
+           
+           This prevents mysterious errors if
+           an element is accidentally deleted.
+        ====================================== */
+
+        if (
+            !introScreen ||
+            !gardenScreen ||
+            !enterGarden ||
+            !garden ||
+            !plantZone ||
+            !flowerLayer ||
+            !countNumber ||
+            !clearBtn ||
+            !tapHint
+        ) {
+
+            console.error(
+                "Bloom: One or more required HTML elements are missing."
+            );
+
+            return;
+        }
+
+
+        /* =====================================
            VARIABLES
-        ======================================= */
+        ====================================== */
 
         let flowerCount = 0;
 
 
-        /*
-         * Random tulip colors
-         */
+        /* =====================================
+           FLOWER COLORS
+        ====================================== */
+
         const flowerColors = [
+
             "#e87f9a",
             "#d96883",
             "#ef9b9c",
@@ -75,12 +104,13 @@ document.addEventListener(
             "#f19b7e",
             "#d97ba1",
             "#ed8794"
+
         ];
 
 
-        /* ======================================
+        /* =====================================
            ENTER GARDEN
-        ======================================= */
+        ====================================== */
 
         enterGarden.addEventListener(
             "click",
@@ -94,93 +124,72 @@ document.addEventListener(
                     "hidden"
                 );
 
-                /*
-                 * Give the browser a moment to
-                 * render the garden before
-                 * enabling interactions.
-                 */
-                setTimeout(() => {
-
-                    gardenScreen.classList.add(
-                        "active"
-                    );
-
-                }, 50);
-
             }
         );
 
 
-        /* ======================================
+        /* =====================================
            CREATE TULIP
-        ======================================= */
+        ====================================== */
 
         function createTulip(
             clientX,
             clientY
         ) {
 
-            const rect =
+            const gardenRect =
                 garden.getBoundingClientRect();
 
 
-            /*
-             * Convert screen coordinates
-             * to garden coordinates.
-             */
+            /* ---------------------------------
+               Convert screen coordinates into
+               coordinates inside the garden.
+            --------------------------------- */
 
             const x =
-                clientX - rect.left;
+                clientX -
+                gardenRect.left;
 
             const y =
-                clientY - rect.top;
+                clientY -
+                gardenRect.top;
 
 
-            /*
-             * The plant-zone is shaped like
-             * the visible grass.
-             *
-             * Because this function is only
-             * called from plantZone, we know
-             * the user clicked the ground.
-             */
-
-
-            /* ==================================
-               KEEP FLOWER INSIDE THE SCREEN
-            =================================== */
-
-            const flowerWidth = 60;
+            /* ---------------------------------
+               Keep flower within screen width.
+            --------------------------------- */
 
             const safeX =
                 Math.max(
-                    flowerWidth / 2,
+                    32,
                     Math.min(
-                        rect.width -
-                        flowerWidth / 2,
+                        gardenRect.width - 32,
                         x
                     )
                 );
 
 
-            /*
-             * Keep the flower from being
-             * planted too close to the bottom.
-             */
+            /* ---------------------------------
+               The user clicked the plant zone,
+               so the Y coordinate is already
+               guaranteed to be on the grass.
+
+               We use the EXACT click position.
+            --------------------------------- */
 
             const safeY =
                 Math.max(
                     0,
                     Math.min(
-                        rect.height - 25,
+                        gardenRect.height,
                         y
                     )
                 );
 
 
-            /* ==================================
-               RANDOM APPEARANCE
-            =================================== */
+            /* =================================
+               RANDOM FLOWER APPEARANCE
+            ================================= */
 
             const color =
                 flowerColors[
@@ -198,12 +207,12 @@ document.addEventListener(
 
             const scale =
                 0.82 +
-                Math.random() * 0.22;
+                Math.random() * 0.20;
 
 
-            /* ==================================
-               CREATE FLOWER
-            =================================== */
+            /* =================================
+               CREATE FLOWER ELEMENT
+            ================================= */
 
             const flower =
                 document.createElement(
@@ -217,17 +226,6 @@ document.addEventListener(
             flower.style.left =
                 `${safeX}px`;
 
-
-            /*
-             * IMPORTANT:
-             *
-             * top = exact location where
-             * the user clicked.
-             *
-             * transform translateY(-100%)
-             * makes the BOTTOM of the flower
-             * sit exactly at that location.
-             */
 
             flower.style.top =
                 `${safeY}px`;
@@ -251,9 +249,9 @@ document.addEventListener(
             );
 
 
-            /* ==================================
-               FLOWER HTML
-            =================================== */
+            /* =================================
+               TULIP HTML
+            ================================= */
 
             flower.innerHTML = `
 
@@ -274,34 +272,18 @@ document.addEventListener(
             `;
 
 
+            /* =================================
+               ADD TO FLOWER LAYER
+            ================================= */
+
             flowerLayer.appendChild(
                 flower
             );
 
 
-            /* ==================================
-               SPARKLE
-            =================================== */
-
-            createSparkle(
-                safeX,
-                safeY - 12
-            );
-
-
-            /* ==================================
-               COUNTER
-            =================================== */
-
-            flowerCount++;
-
-            countNumber.textContent =
-                flowerCount;
-
-
-            /* ==================================
+            /* =================================
                BLOOM ANIMATION
-            =================================== */
+            ================================= */
 
             requestAnimationFrame(
                 () => {
@@ -320,11 +302,33 @@ document.addEventListener(
             );
 
 
-            /* ==================================
-               HIDE TAP HINT
-            =================================== */
+            /* =================================
+               SPARKLE
+            ================================= */
 
-            if (flowerCount >= 1) {
+            createSparkle(
+                safeX,
+                safeY - 12
+            );
+
+
+            /* =================================
+               UPDATE COUNTER
+            ================================= */
+
+            flowerCount++;
+
+            countNumber.textContent =
+                flowerCount;
+
+
+            /* =================================
+               HIDE HINT
+            ================================= */
+
+            if (
+                flowerCount === 1
+            ) {
 
                 tapHint.style.opacity =
                     "0";
@@ -334,9 +338,9 @@ document.addEventListener(
         }
 
 
-        /* ======================================
+        /* =====================================
            CREATE SPARKLE
-        ======================================= */
+        ====================================== */
 
         function createSparkle(
             x,
@@ -347,6 +351,7 @@ document.addEventListener(
                 document.createElement(
                     "div"
                 );
+
 
             sparkle.className =
                 "sparkle";
@@ -377,17 +382,29 @@ document.addEventListener(
         }
 
 
-        /* ======================================
-           PLANT ONLY ON THE GROUND
-        ======================================= */
+        /* =====================================
+           PLANTING
+
+           IMPORTANT:
+
+           We listen ONLY to plantZone.
+
+           Therefore:
+           
+           SKY = NOTHING
+           MOON = NOTHING
+           HEADER = NOTHING
+           BUTTERFLY = NOTHING
+           GRASS = FLOWER
+        ====================================== */
 
         plantZone.addEventListener(
             "pointerdown",
             (event) => {
 
-                /*
-                 * Ignore right mouse button.
-                 */
+                /* ------------------------------
+                   Ignore right mouse button
+                ------------------------------ */
 
                 if (
                     event.pointerType === "mouse" &&
@@ -399,14 +416,16 @@ document.addEventListener(
                 }
 
 
-                /*
-                 * Prevent scrolling or
-                 * accidental browser gestures
-                 * while planting.
-                 */
+                /* ------------------------------
+                   Stop browser touch gestures
+                ------------------------------ */
 
                 event.preventDefault();
 
+
+                /* ------------------------------
+                   Create flower
+                ------------------------------ */
 
                 createTulip(
                     event.clientX,
@@ -417,9 +436,9 @@ document.addEventListener(
         );
 
 
-        /* ======================================
-           CLEAR GARDEN
-        ======================================= */
+        /* =====================================
+           CLEAR BUTTON
+        ====================================== */
 
         clearBtn.addEventListener(
             "click",
@@ -428,17 +447,13 @@ document.addEventListener(
                 event.stopPropagation();
 
 
-                /*
-                 * Remove all flowers.
-                 */
+                /* Remove all flowers */
 
                 flowerLayer.innerHTML =
                     "";
 
 
-                /*
-                 * Reset counter.
-                 */
+                /* Reset count */
 
                 flowerCount = 0;
 
@@ -446,9 +461,7 @@ document.addEventListener(
                     "0";
 
 
-                /*
-                 * Show the hint again.
-                 */
+                /* Show hint again */
 
                 tapHint.style.opacity =
                     "1";
@@ -457,17 +470,32 @@ document.addEventListener(
         );
 
 
-        /* ======================================
-           KEYBOARD SUPPORT
-        ======================================= */
+        /* =====================================
+           KEYBOARD
+
+           ENTER = Open garden
+           ESC   = Clear garden
+        ====================================== */
 
         document.addEventListener(
             "keydown",
             (event) => {
 
-                /*
-                 * ESC = clear garden
-                 */
+                /* ENTER */
+
+                if (
+                    event.key === "Enter" &&
+                    !introScreen.classList.contains(
+                        "hidden"
+                    )
+                ) {
+
+                    enterGarden.click();
+
+                }
+
+
+                /* ESCAPE */
 
                 if (
                     event.key === "Escape"
@@ -486,30 +514,13 @@ document.addEventListener(
 
                 }
 
-
-                /*
-                 * ENTER = enter garden
-                 * while intro is visible
-                 */
-
-                if (
-                    event.key === "Enter" &&
-                    !introScreen.classList.contains(
-                        "hidden"
-                    )
-                ) {
-
-                    enterGarden.click();
-
-                }
-
             }
         );
 
 
-        /* ======================================
-           PREVENT CONTEXT MENU
-        ======================================= */
+        /* =====================================
+           PREVENT RIGHT CLICK
+        ====================================== */
 
         garden.addEventListener(
             "contextmenu",
@@ -520,6 +531,14 @@ document.addEventListener(
             }
         );
 
+
+        /* =====================================
+           READY
+        ====================================== */
+
+        console.log(
+            "Bloom Garden loaded successfully 🌷"
+        );
 
     }
 );
