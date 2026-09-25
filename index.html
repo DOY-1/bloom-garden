@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -10,7 +11,7 @@
 
     <meta
         name="theme-color"
-        content="#050a18"
+        content="#050918"
     >
 
     <title>Bloom — A Little Garden</title>
@@ -20,11 +21,14 @@
 
 <body>
 
-    <!-- ==========================================
+    <!-- =========================================
          INTRO SCREEN
-    =========================================== -->
+    ========================================== -->
 
-    <section id="introScreen" class="intro-screen">
+    <section
+        id="introScreen"
+        class="intro-screen"
+    >
 
         <div class="stars intro-stars"></div>
 
@@ -55,6 +59,7 @@
             <button
                 id="enterGarden"
                 class="enter-button"
+                type="button"
             >
                 <span>Enter the Garden</span>
                 <span class="button-arrow">→</span>
@@ -65,21 +70,19 @@
     </section>
 
 
-    <!-- ==========================================
+    <!-- =========================================
          GARDEN SCREEN
-    =========================================== -->
+    ========================================== -->
 
     <section
         id="gardenScreen"
         class="garden-screen hidden"
     >
 
-        <!-- Night sky -->
+        <!-- Stars -->
 
         <div class="stars garden-stars"></div>
 
-        <div class="small-cloud cloud-one"></div>
-        <div class="small-cloud cloud-two"></div>
 
         <!-- Moon -->
 
@@ -88,9 +91,15 @@
         </div>
 
 
-        <!-- ======================================
+        <!-- Clouds -->
+
+        <div class="small-cloud cloud-one"></div>
+        <div class="small-cloud cloud-two"></div>
+
+
+        <!-- =====================================
              HEADER
-        ======================================= -->
+        ====================================== -->
 
         <header class="garden-header">
 
@@ -103,36 +112,36 @@
             </h2>
 
             <p class="garden-instruction">
-                Tap anywhere on the ground
+                Tap the ground to plant
             </p>
 
         </header>
 
 
-        <!-- ======================================
+        <!-- =====================================
              GARDEN
-        ======================================= -->
+        ====================================== -->
 
         <main
             id="garden"
             class="garden"
         >
 
-            <!-- Soft light near horizon -->
+            <!-- Horizon light -->
 
             <div class="ground-light"></div>
 
 
-            <!-- ==================================
-                 BACK GRASS
-            =================================== -->
+            <!-- Visible back grass -->
 
             <div class="back-grass"></div>
 
 
-            <!-- ==================================
-                 FLOWERS
-            =================================== -->
+            <!-- =================================
+                 FLOWER LAYER
+
+                 Flowers are placed here.
+            ================================== -->
 
             <div
                 id="flowerLayer"
@@ -140,26 +149,23 @@
             ></div>
 
 
-            <!-- ==================================
-                 PLANTING AREA
+            <!-- =================================
+                 PLANTING ZONE
 
-                 IMPORTANT:
-                 This transparent layer only covers
-                 the actual grass area.
-
-                 Therefore you cannot plant in the sky.
-            =================================== -->
+                 ONLY THIS AREA CAN BE CLICKED.
+                 It follows the grass shape.
+            ================================== -->
 
             <div
                 id="plantZone"
                 class="plant-zone"
-                aria-label="Planting ground"
+                aria-label="Garden planting area"
             ></div>
 
 
-            <!-- ==================================
+            <!-- =================================
                  FIREFLIES
-            =================================== -->
+            ================================== -->
 
             <div class="fireflies">
 
@@ -177,31 +183,35 @@
             </div>
 
 
-            <!-- ==================================
+            <!-- =================================
                  FRONT GRASS
-            =================================== -->
+            ================================== -->
 
             <div class="front-grass"></div>
 
 
-            <!-- ==================================
+            <!-- =================================
                  BUTTERFLY
-            =================================== -->
+            ================================== -->
 
             <div class="butterfly">
 
-                <div class="butterfly-wing wing-left"></div>
+                <div
+                    class="butterfly-wing wing-left"
+                ></div>
 
                 <div class="butterfly-body"></div>
 
-                <div class="butterfly-wing wing-right"></div>
+                <div
+                    class="butterfly-wing wing-right"
+                ></div>
 
             </div>
 
 
-            <!-- ==================================
+            <!-- =================================
                  BOTTOM UI
-            =================================== -->
+            ================================== -->
 
             <div class="garden-ui">
 
@@ -209,13 +219,22 @@
                     id="flowerCounter"
                     class="flower-counter"
                 >
-                    <span id="countNumber">0</span>
-                    <span id="countText">blooms</span>
+
+                    <span id="countNumber">
+                        0
+                    </span>
+
+                    <span id="countText">
+                        blooms
+                    </span>
+
                 </div>
+
 
                 <button
                     id="clearBtn"
                     class="clear-button"
+                    type="button"
                 >
                     Clear
                 </button>
@@ -223,14 +242,19 @@
             </div>
 
 
-            <!-- Tap hint -->
+            <!-- =================================
+                 TAP HINT
+            ================================== -->
 
             <div
                 id="tapHint"
                 class="tap-hint"
             >
+
                 <span class="tap-dot"></span>
+
                 Tap the ground to plant
+
             </div>
 
         </main>
@@ -238,7 +262,10 @@
     </section>
 
 
+    <!-- JAVASCRIPT -->
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
